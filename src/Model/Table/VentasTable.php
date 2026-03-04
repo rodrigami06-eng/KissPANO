@@ -42,6 +42,7 @@ class VentasTable extends Table
         $this->setPrimaryKey('IdVenta');
 
         $this->hasMany('ProdVent');
+        $this->addBehavior('Timestamp');
     }
 
     /**

@@ -43,16 +43,40 @@ class VentasController extends AppController
      */
     public function add()
     {
-        //Llamamos a la tabla de Provedores en la base de Datos
+        //Llamamos a la tabla de Provedores y productos en la base de Datos
         $provedorT = $this->fetchTable('Provedores');
-        $provL = $provedorT->find('list');
-        $data = $provL->toArray();
+        $productoT = $this->fetchTable('Productos');
 
-        $this->set(['provL' => $data]);
+        //Se estraen por lista y por campo displayfield
+        $prodL = $productoT->find('list');
+        $provL = $provedorT->find('list');
+
+        //Se convierten en arreglos
+        $provL = $provL->toArray();
+        $prodL = $prodL->toArray();
+
+        $this->set(['provL' => $provL, compact('productoT'), 'prodL' => $prodL]);
 
         $venta = $this->Ventas->newEmptyEntity();
         if ($this->request->is('post')) {
+
+            if($this->Ventas->max('IdVenta') == null){
+                $idVenta = 1;
+            } else {
+                $idVenta = $this->Ventas->max('IdVenta');
+            }
+            $listaVP = $this->request->getData('VentProd');
+            $listaVP1 = array();
+            foreach($listaVP as $vp){
+                $prod = $productoT->get($vp->idProducto);
+                $vp->set(['IdVenta' => $idVenta, 'Subtotal' => $vp['Cantidad']*$prod->Costo]);
+                $listaVP1 .= $vp;
+            }
+
+            $venta->ProdVent = $listaVP1;
+            
             $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
+
             if ($this->Ventas->save($venta)) {
                 $this->Flash->success(__('The venta has been saved.'));
 

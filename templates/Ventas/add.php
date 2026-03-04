@@ -23,7 +23,7 @@
                         'label' => 'Seleccione Proveedor',
                         'options' => $provL,
                         'empty' => 'Selecciona',
-                        'class' => 'form-select'
+                        'class' => 'form-select',
                     ]);
                 ?>
                 <div id="contain-producto">
@@ -35,8 +35,13 @@
                         <div class = "p-item border p-3 mb-3">
                             <h5>Otro Producto</h5>
                             <?php
-                                echo $this->Form->control('VentProd.{index}.IdProducto', ['label' => 'Producto']);
-                                echo $this->Form->control('VentProd.{index}.Cantidad', ['label' => 'Cantidad']);
+                                echo $this->Form->control('VentProd.{index}.IdProducto', [
+                                    'type' => 'select',
+                                    'label' => 'Producto',
+                                    'options' => $prodL,
+                                    'class' => 'form-select',
+                                    ]);
+                                echo $this->Form->control('VentProd.{index}.Cantidad', ['type' => 'number', 'label' => 'Cantidad']);
                             ?>
                             <button type="button" class="btn btn-danger btn-sm eliminar-prod">Quitar</button>
                         </div>
