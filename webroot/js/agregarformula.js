@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const template = document.getElementById('pv-template').innerHTML;
 
     // Función para agregar perfil
-    document.getElementById('btn-add-ProdVent').addEventListener('click', function() {
+    document.getElementById('btn-add-prodvent').addEventListener('click', function() {
         // Reemplazamos el marcador {index} por el número actual
         let nuevoHTML = template.replace(/{index}/g, indice);
         
         // Creamos un elemento temporal para insertar el HTML
-        let div = document.createElement('div');
-        div.innerHTML = nuevoHTML;
+        let divo = document.createElement('div');
+        divo.innerHTML = nuevoHTML;
         
         // Lo agregamos al contenedor real
-        contenedor.appendChild(div.firstChild);
+        contenedor.appendChild(divo);
         
         indice++; // Aumentamos para el siguiente
     });

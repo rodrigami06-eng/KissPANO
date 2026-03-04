@@ -28,14 +28,14 @@
                 ?>
                 <div id="contain-producto">
 
-                    <button type="Button" id="btn-add-ProdVent" class="btn btn-secondary">
+                    <button type="Button" id="btn-add-prodvent" class="btn btn-secondary">
                         Agregar Producto
                     </button>
                     <template id="pv-template">
                         <div class = "p-item border p-3 mb-3">
                             <h5>Otro Producto</h5>
                             <?php
-                                echo $this->Form->control('VentProd.{index}.Producto', ['label' => 'Producto']);
+                                echo $this->Form->control('VentProd.{index}.IdProducto', ['label' => 'Producto']);
                                 echo $this->Form->control('VentProd.{index}.Cantidad', ['label' => 'Cantidad']);
                             ?>
                             <button type="button" class="btn btn-danger btn-sm eliminar-prod">Quitar</button>
@@ -48,4 +48,4 @@
         </div>
     </div>
 </div>
-<?=$this->Html->script('agregarFormula', ['block' => true])?>
+<?=$this->Html->script('agregarformula.js', )?>

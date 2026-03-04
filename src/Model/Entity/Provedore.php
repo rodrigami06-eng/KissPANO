@@ -14,7 +14,6 @@ use Cake\ORM\Entity;
  * @property string $Num
  * @property string $Negocio
  * @property string $Nombre
- * @property string $Contrasenia
  * @property bool $Estado
  */
 class Provedore extends Entity
@@ -34,7 +33,6 @@ class Provedore extends Entity
         'Num' => true,
         'Negocio' => true,
         'Nombre' => true,
-        'Contrasenia' => true,
         'Estado' => true,
     ];
 }

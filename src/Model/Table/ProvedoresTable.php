@@ -80,12 +80,6 @@ class ProvedoresTable extends Table
             ->notEmptyString('Nombre');
 
         $validator
-            ->scalar('Contrasenia')
-            ->maxLength('Contrasenia', 100)
-            ->requirePresence('Contrasenia', 'create')
-            ->notEmptyString('Contrasenia');
-
-        $validator
             ->boolean('Estado')
             ->requirePresence('Estado', 'create')
             ->notEmptyString('Estado');
