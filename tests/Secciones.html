@@ -1,0 +1,94 @@
+<!--Seccion de inicio-->
+        <div id="inicio" class="content-section active">
+            <h1>Bienvenido, Administrador</h1>
+            <div style="display: flex; gap: 20px;">
+                <div class="card" style="flex:1;"><h3>Pedidos Hoy</h3><p>24</p></div>
+                <div class="card" style="flex:1;"><h3>Ganancia Hoy</h3><p>$1,850.00</p></div>
+                <div class="card" style="flex:1;"><h3>Stock Crítico</h3><p style="color:red">3 Productos</p></div>
+            </div>
+        </div>
+
+        <!--Seccion de Usuario-->
+        <div id="usuario" class="content-section">
+            <h1>Gestión de Personal</h1>
+            <div class="card">
+                <table>
+                    <thead><tr><th>ID</th><th>Nombre</th><th>Puesto</th><th>Acciones</th></tr></thead>
+                    <tbody>
+                        <tr><td>#101</td><td>Juan Pérez</td><td>Maestro Panadero</td><td><button>Editar</button></td></tr>
+                        <tr><td>#102</td><td>Rosa Díaz</td><td>Cajera</td><td><button>Editar</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Seccion de Inventario(productos)-->
+        <div id="inventario" class="content-section">
+            <h1>Inventario de Productos</h1>
+            <button class="btn-add" onclick="openModal()">+ Añadir Nuevo Pan</button>
+            <div class="card">
+                <table id="tabla-inventario">
+                    <thead><tr><th>Producto</th><th>Tipo</th><th>Existencia</th><th>Precio</th></tr></thead>
+                    <tbody>
+                        <tr><td>Concha Chocolate</td><td>Dulce</td><td>45 pzs</td><td>$12.00</td></tr>
+                        <tr><td>Bolillo</td><td>Salado</td><td>120 pzs</td><td>$2.50</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Seccion de Ventas-->
+        <div id="ventas" class="content-section">
+            <h1>Pedidos de Clientes (En Línea)</h1>
+            <div class="card">
+                <table>
+                    <thead><tr><th>ID Pedido</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Estatus</th></tr></thead>
+                    <tbody>
+                        <tr><td>#V-501</td><td>Alberto G.</td><td>6 Conchas, 10 Bolillos</td><td>$97.00</td><td><span class="status status-pagado">Pagado</span></td></tr>
+                        <tr><td>#V-502</td><td>Lucía M.</td><td>2 Pasteles de Elote</td><td>$340.00</td><td><span class="status status-pendiente">Pendiente</span></td></tr>
+                        <tr><td>#V-503</td><td>Pedro X.</td><td>5 Orejas</td><td>$75.00</td><td><span class="status status-cancelado">Cancelado</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Seccion de reportes-->
+        <div id="reportes" class="content-section">
+            <h1>Reportes de Rendimiento</h1>
+            <div class="card">
+                <h3>Filtrar por Fecha</h3>
+                <input type="date"> a <input type="date">
+                <button>Generar Reporte PDF</button>
+            </div>
+            <div style="display: flex; gap: 20px;">
+                <div class="card" style="flex:1;">
+                    <h3>Producto más vendido</h3>
+                    <p>Pan de Muerto (Temporada)</p>
+                </div>
+                <div class="card" style="flex:1;">
+                    <h3>Ingreso Mensual</h3>
+                    <p>$45,200.00 MXN</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="modalPan" class="modal">
+        <div class="modal-content">
+            <h2>Añadir Nuevo Producto</h2>
+            <div class="form-group">
+                <label>Nombre del Pan:</label>
+                <input type="text" id="nombrePan" placeholder="Ej. Cuernito">
+            </div>
+            <div class="form-group">
+                <label>Precio Unitario:</label>
+                <input type="number" id="precioPan" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label>Cantidad Inicial:</label>
+                <input type="number" id="stockPan" placeholder="100">
+            </div>
+            <button class="btn-add" onclick="savePan()" style="width: 100%;">Guardar en Inventario</button>
+            <button onclick="closeModal()" style="width: 100%; background: none; border: none; cursor: pointer; color: gray;">Cancelar</button>
+        </div>

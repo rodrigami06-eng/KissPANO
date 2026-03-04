@@ -1,0 +1,161 @@
+    :root {
+        --cafe-oscuro: #5d2e0a;
+        --cafe-claro: #8b4513;
+        --naranja: #d2691e;
+        --crema: #fdf5e6;
+        --blanco: #ffffff;
+        --verde: #27ae60;
+        --rojo: #e74c3c;
+        --amarillo: #f1c40f;
+    }
+
+    body { 
+        font-family: 'Segoe UI', sans-serif; 
+        margin: 0; 
+        display: flex; 
+        height: 100vh; 
+        background-color: var(--crema); 
+    }
+
+    /* SIDEBAR */
+    .sidebar { 
+        width: 260px; 
+        background-color: var(--cafe-oscuro); 
+        color: white; 
+        display: flex; 
+        flex-direction: column; 
+        padding: 20px; 
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1); 
+    }
+    .sidebar h2 { 
+        text-align: center; 
+        font-size: 1.1rem; 
+        border-bottom: 1px solid var(--cafe-claro); 
+        padding-bottom: 15px; 
+    }
+    .menu-item { 
+        padding: 12px 15px; 
+        margin-bottom: 8px; 
+        cursor: pointer; 
+        border-radius: 8px; 
+        transition: 0.3s; display: 
+        flex; align-items: center;
+    }
+    .menu-item:hover, .menu-item.active { 
+        background-color: var(--naranja); 
+    }
+    .logout-btn { margin-top: auto; 
+        background-color: var(--rojo); 
+        padding: 10px; text-align: center; 
+        border-radius: 8px; 
+        text-decoration: none; 
+        color: white; 
+        font-weight: bold; 
+    }
+    .text-white {
+        color: var(--blanco);
+    }
+    .menu-item a {
+        text-decoration: none;
+        color: white;
+    }
+    /* MAIN CONTENT */
+    .main-content { 
+        flex: 1; 
+        padding: 30px; 
+        overflow-y: auto; 
+    }
+    .content-section { 
+        display: block; 
+    }
+    .content-section.active { 
+        display: block; 
+    }
+    /* ELEMENTOS COMUNES */
+    .card { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        margin-bottom: 20px; 
+    }
+    h1 { 
+        color: var(--cafe-oscuro); 
+        margin-bottom: 25px; }
+    table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        background: white; 
+        margin-top: 15px; }
+    th, td { padding: 12px; 
+        text-align: left; 
+        border-bottom: 1px solid #eee; 
+    }
+    th { 
+        background-color: var(--cafe-claro); 
+        color: white; 
+    }
+    /* BOTONES */
+    .btn-add { 
+        background-color: var(--verde); 
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        margin-bottom: 15px; 
+    }
+    /* STATUS BADGES */
+    .status { 
+        padding: 5px 10px; 
+        border-radius: 20px; 
+        font-size: 0.85rem; 
+        font-weight: bold; }
+    .status-pagado { 
+        background: #d4edda; 
+        color: var(--verde); 
+    }
+    .status-pendiente { 
+        background: #fff3cd; 
+        color: #856404; 
+    }
+    .status-cancelado { 
+        background: #f8d7da; 
+        color: var(--rojo); 
+    }
+
+    /* FORMULARIO MODAL (PARA AÑADIR PAN) */
+    .modal { 
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100%; 
+        background-color: rgba(0,0,0,0.5); 
+    }
+    .modal-content { 
+        background-color: white; 
+        margin: 10% auto; 
+        padding: 20px; 
+        border-radius: 10px; 
+        width: 400px; 
+    }
+    .form-group { 
+        margin-bottom: 15px; 
+    }
+    .form-group label { 
+        display: block; 
+        margin-bottom: 5px; 
+    }
+    .form-group input { 
+        width: 100%; 
+        padding: 8px; 
+        box-sizing: border-box; 
+    }
+
+    .error-message {
+        color: red;
+    }
