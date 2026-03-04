@@ -39,10 +39,12 @@
                                     'type' => 'select',
                                     'label' => 'Producto',
                                     'options' => $prodL,
+                                    'empty' => 'Selecciona',
                                     'class' => 'form-select',
                                     ]);
                                 echo $this->Form->control('VentProd.{index}.Cantidad', ['type' => 'number', 'label' => 'Cantidad']);
                             ?>
+                            <p>Total </p>
                             <button type="button" class="btn btn-danger btn-sm eliminar-prod">Quitar</button>
                         </div>
                     </template>

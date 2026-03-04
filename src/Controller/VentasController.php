@@ -51,8 +51,6 @@ class VentasController extends AppController
         if ($this->request->is('post')) {
             $listaVP = $this->request->getData('VentProd');
 
-            $listaVP1 = array();
-
             $prod = $productoT->find('list', [
                 'keyField' => 'IdProducto',       // La llave del arreglo
                 'valueField' => 'Costo'   // El valor del arreglo
@@ -61,7 +59,7 @@ class VentasController extends AppController
             $indice = 0;
             foreach($listaVP as $vp){
                 $vp['Subtotal'] = $vp['Cantidad'] * $prod[$vp['IdProducto']];
-                $listaVP1[$indice] .= $vp;
+                $listaVP1[$indice] = $vp;
 
                 $indice ++;
             }
