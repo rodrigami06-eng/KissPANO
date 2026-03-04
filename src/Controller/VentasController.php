@@ -45,8 +45,40 @@ class VentasController extends AppController
     {
         //Llamamos a la tabla de Provedores y productos en la base de Datos
         $provedorT = $this->fetchTable('Provedores');
-        $productoT = $this->fetchTable('Productos');
+        $productoT = $this->fetchTable('Productos');//->find('all');
 
+        $venta = $this->Ventas->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $listaVP = $this->request->getData('VentProd');
+
+            $listaVP1 = array();
+
+            $prod = $productoT->find('list', [
+                'keyField' => 'IdProducto',       // La llave del arreglo
+                'valueField' => 'Costo'   // El valor del arreglo
+            ])->toArray();
+
+            $indice = 0;
+            foreach($listaVP as $vp){
+                $vp['Subtotal'] = $vp['Cantidad'] * $prod[$vp['IdProducto']];
+                $listaVP1[$indice] .= $vp;
+
+                $indice ++;
+            }
+            dd($listaVP1);
+            exit();
+
+            $venta->ProdVent = $listaVP1;
+
+            $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
+
+            if ($this->Ventas->save($venta)) {
+                $this->Flash->success(__('The venta has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The venta could not be saved. Please, try again.'));
+        }
         //Se estraen por lista y por campo displayfield
         $prodL = $productoT->find('list');
         $provL = $provedorT->find('list');
@@ -57,33 +89,6 @@ class VentasController extends AppController
 
         $this->set(['provL' => $provL, compact('productoT'), 'prodL' => $prodL]);
 
-        $venta = $this->Ventas->newEmptyEntity();
-        if ($this->request->is('post')) {
-
-            if($this->Ventas->max('IdVenta') == null){
-                $idVenta = 1;
-            } else {
-                $idVenta = $this->Ventas->max('IdVenta');
-            }
-            $listaVP = $this->request->getData('VentProd');
-            $listaVP1 = array();
-            foreach($listaVP as $vp){
-                $prod = $productoT->get($vp->idProducto);
-                $vp->set(['IdVenta' => $idVenta, 'Subtotal' => $vp['Cantidad']*$prod->Costo]);
-                $listaVP1 .= $vp;
-            }
-
-            $venta->ProdVent = $listaVP1;
-            
-            $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
-
-            if ($this->Ventas->save($venta)) {
-                $this->Flash->success(__('The venta has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The venta could not be saved. Please, try again.'));
-        }
         $this->set(compact('venta'));
     }
 
