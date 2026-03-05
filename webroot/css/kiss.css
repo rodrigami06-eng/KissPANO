@@ -1,159 +1,63 @@
     :root {
-        --cafe-oscuro: #5d2e0a;
-        --cafe-claro: #8b4513;
-        --naranja: #d2691e;
-        --crema: #fdf5e6;
+        --primario: #5d2e0a;
+        --acento: #d2691e;
+        --fondo: #fdf5e6;
         --blanco: #ffffff;
-        --verde: #27ae60;
-        --rojo: #e74c3c;
-        --amarillo: #f1c40f;
+        --exito: #2e7d32;
+        --peligro: #c62828;
+        --sidebar-color: #3e1f07;
+        --gris-claro: #f4f1ee;
     }
 
-    body { 
-        font-family: 'Segoe UI', sans-serif; 
-        margin: 0; 
-        display: flex; 
-        height: 100vh; 
-        background-color: var(--crema); 
-    }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; background: var(--fondo); overflow: hidden; }
+    
+    /* --- NAVEGACIÓN --- */
+    .sidebar { width: 260px; background: var(--sidebar-color); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
+    .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .menu-item { padding: 15px 25px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; opacity: 0.8; }
+    .menu-item:hover { background: rgba(255,255,255,0.1); opacity: 1; }
+    .menu-item.active { background: var(--acento); opacity: 1; font-weight: bold; border-left: 5px solid white; }
 
-    /* SIDEBAR */
-    .sidebar { 
-        width: 260px; 
-        background-color: var(--cafe-oscuro); 
-        color: white; 
-        display: flex; 
-        flex-direction: column; 
-        padding: 20px; 
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1); 
-    }
-    .sidebar h2 { 
-        text-align: center; 
-        font-size: 1.1rem; 
-        border-bottom: 1px solid var(--cafe-claro); 
-        padding-bottom: 15px; 
-    }
-    .menu-item { 
-        padding: 12px 15px; 
-        margin-bottom: 8px; 
-        cursor: pointer; 
-        border-radius: 8px; 
-        transition: 0.3s; display: 
-        flex; align-items: center;
-    }
-    .menu-item:hover, .menu-item.active { 
-        background-color: var(--naranja); 
-    }
-    .logout-btn { margin-top: auto; 
-        background-color: var(--rojo); 
-        padding: 10px; text-align: center; 
-        border-radius: 8px; 
-        text-decoration: none; 
-        color: white; 
-        font-weight: bold; 
-    }
-    .text-white {
-        color: var(--blanco);
-    }
-    .menu-item a {
-        text-decoration: none;
-        color: white;
-    }
-    /* MAIN CONTENT */
-    .main-content { 
-        flex: 1; 
-        padding: 30px; 
-        overflow-y: auto; 
-    }
-    .content-section { 
-        display: block; 
-    }
-    .content-section.active { 
-        display: block; 
-    }
-    /* ELEMENTOS COMUNES */
-    .card { 
-        background: white; 
-        padding: 20px; 
-        border-radius: 12px; 
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-        margin-bottom: 20px; 
-    }
-    h1 { 
-        color: var(--cafe-oscuro); 
-        margin-bottom: 25px; }
-    table { 
-        width: 100%; 
-        border-collapse: collapse; 
-        background: white; 
-        margin-top: 15px; }
-    th, td { padding: 12px; 
-        text-align: left; 
-        border-bottom: 1px solid #eee; 
-    }
-    th { 
-        background-color: var(--cafe-claro); 
-        color: white; 
-    }
-    /* BOTONES */
-    .btn-add { 
-        background-color: var(--verde); 
-        color: white; 
-        padding: 10px 20px; 
-        border: none; 
-        border-radius: 6px; 
-        cursor: pointer; 
-        font-weight: bold; 
-        margin-bottom: 15px; 
-    }
-    /* STATUS BADGES */
-    .status { 
-        padding: 5px 10px; 
-        border-radius: 20px; 
-        font-size: 0.85rem; 
-        font-weight: bold; }
-    .status-pagado { 
-        background: #d4edda; 
-        color: var(--verde); 
-    }
-    .status-pendiente { 
-        background: #fff3cd; 
-        color: #856404; 
-    }
-    .status-cancelado { 
-        background: #f8d7da; 
-        color: var(--rojo); 
-    }
+    /* --- CONTENIDO --- */
+    .main-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* FORMULARIO MODAL (PARA AÑADIR PAN) */
-    .modal { 
-        display: none; 
-        position: fixed; 
-        z-index: 1; 
-        left: 0; 
-        top: 0; 
-        width: 100%; 
-        height: 100%; 
-        background-color: rgba(0,0,0,0.5); 
-    }
-    .modal-content { 
-        background-color: white; 
-        margin: 10% auto; 
-        padding: 20px; 
-        border-radius: 10px; 
-        width: 400px; 
-    }
-    .form-group { 
-        margin-bottom: 15px; 
-    }
-    .form-group label { 
-        display: block; 
-        margin-bottom: 5px; 
-    }
-    .form-group input { 
-        width: 100%; 
-        padding: 8px; 
-        box-sizing: border-box; 
+    .glass-panel { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); margin-bottom: 20px; transition: 0.3s; }
+        
+    .pos-container { display: grid; grid-template-columns: 1fr 450px; gap: 20px; height: 78vh; }
+    .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; overflow-y: auto; padding: 15px; background: rgba(255,255,255,0.6); border-radius: 15px; border: 1px solid #e0dcd5; }
+    .prod-card { background: white; border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .prod-card:hover { border-color: var(--acento); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+    .prod-card span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+    .prod-card b { color: var(--acento); font-size: 1.1rem; }
+
+    .ticket-box { background: white; border-radius: 15px; border-top: 8px solid var(--primario); display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
+    .ticket-header { padding: 15px; text-align: center; border-bottom: 1px dashed #ccc; background: #fffcf9; border-radius: 15px 15px 0 0; }
+    .ticket-scroll { flex-grow: 1; overflow-y: auto; padding: 10px; }
+    .table-pos { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .table-pos th { text-align: left; padding: 10px; border-bottom: 2px solid var(--gris-claro); color: #888; text-transform: uppercase; font-size: 0.7rem; }
+    .table-pos td { padding: 12px 10px; border-bottom: 1px solid #f9f9f9; }
+
+    .ticket-footer { padding: 20px; background: #fdfaf7; border-radius: 0 0 15px 15px; border-top: 1px solid #eee; }
+    .total-line { display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: bold; color: var(--primario); margin-bottom: 10px; }
+
+    table.std-table { width: 100%; border-collapse: collapse; }
+    table.std-table th { background: var(--gris-claro); padding: 12px; text-align: left; color: var(--primario); }
+    table.std-table td { padding: 12px; border-bottom: 1px solid #eee; }
+
+    .btn { padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+    .btn-pay { background: var(--exito); color: white; width: 100%; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-pay:hover { background: #1e5621; transform: scale(1.02); }
+    .btn-add { background: var(--primario); color: white; }
+    .btn-logout { margin: 20px; padding: 12px; background: var(--peligro); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; box-sizing: border-box; background: #fff; }
+
+    .btn-action { background: none; border: none; cursor: pointer; font-size: 1.1rem; transition: 0.2s; }
+    .btn-action:hover { transform: scale(1.2); 
     }
 
     .error-message {

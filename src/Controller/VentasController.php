@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\I18n\FrozenTime;
+
 /**
  * Ventas Controller
  *
@@ -57,25 +59,29 @@ class VentasController extends AppController
             ])->toArray();
 
             $indice = 0;
+            $total = 0.0;
+
             foreach($listaVP as $vp){
                 $vp['Subtotal'] = $vp['Cantidad'] * $prod[$vp['IdProducto']];
                 $listaVP1[$indice] = $vp;
 
+                $total += $vp['Subtotal'];
+
                 $indice ++;
             }
-            dd($listaVP1);
-            exit();
 
             $venta->ProdVent = $listaVP1;
+            $venta->Total = $total;
+            $venta->Fecha = FrozenTime::now();
 
             $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
 
             if ($this->Ventas->save($venta)) {
-                $this->Flash->success(__('The venta has been saved.'));
+                $this->Flash->success(__('La venta fue guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The venta could not be saved. Please, try again.'));
+            $this->Flash->error(__('La Venta no pudo ser guardada, intente de nuevo'));
         }
         //Se estraen por lista y por campo displayfield
         $prodL = $productoT->find('list');
