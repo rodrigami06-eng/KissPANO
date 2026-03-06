@@ -4,56 +4,48 @@
  * @var iterable<\App\Model\Entity\Producto> $productos
  */
 ?>
-<div id="inventario" class="content-section productos index content">
-    <h3><?= __('Productos') ?></h3>
-    <?= $this->Html->link(__('+ Producto'), ['action' => 'add'], ['class' => 'btn-add button float-right']) ?>
-    <div class="table-responsive card">
-        <table>
-            <thead>
+<section id="inventario" class="section active">
+        <h1>Control de Stock</h1>
+        <div class="glass-panel">
+            <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr auto;">
+                <input type="text" id="i-nom" placeholder="Producto" oninput="soloLetras(this)">
+                <input type="number" id="i-price" placeholder="Precio $">
+                <input type="number" id="i-qty" placeholder="Existencia">
+                <button class="btn btn-add" onclick="addInv()">Guardar</button>
+            </div>
+        </div>
+        <div class="glass-panel">
+            <table class="std-table">
+                <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('IdProducto') ?></th>
-                    <th><?= $this->Paginator->sort('Nombre') ?></th>
-                    <th><?= $this->Paginator->sort('Costo') ?></th>
-                    <th><?= $this->Paginator->sort('CantDis') ?></th>
-                    <th><?= $this->Paginator->sort('Imagen') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort('Nombre', 'Producto') ?></th>
+                    <th><?= $this->Paginator->sort('Costo', 'Precio') ?></th>
+                    <th><?= $this->Paginator->sort('CantDis', 'Existencia') ?></th>
+                    <th><?= $this->Paginator->sort('Imagen', 'Imagen') ?></th>
+                    <th class="actions"><?= __('Acciones') ?></th>
                 </tr>
-            </thead>
             <tbody>
                 <?php foreach ($productos as $producto): ?>
                 <tr>
-                    <td><?= $this->Number->format($producto->IdProducto) ?></td>
                     <td><?= h($producto->Nombre) ?></td>
                     <td><?= $this->Number->format($producto->Costo) ?></td>
                     <td><?= $this->Number->format($producto->CantDis) ?></td>
                     <td><?= $this->Html->image('producto/'.$producto->Imagen)?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $producto->IdProducto]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $producto->IdProducto]) ?>
+                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $producto->IdProducto, 'class' => 'btn-action']) ?>
+                        <?= $this->Html->link(__('✏️'), ['action' => 'edit', $producto->IdProducto, 'class' => 'btn-action']) ?>
                         <?= $this->Form->postLink(
-                            __('Delete'),
+                            __('🗑️'),
                             ['action' => 'delete', $producto->IdProducto],
                             [
                                 'method' => 'delete',
                                 'confirm' => __('Desea eliminar Producto # {0}?', $producto->IdProducto),
+                                'class' => 'btn-action'
                             ]
                         ) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
-    </div>
-
-    <? '' ?>
-</div>
+        </div>
+    </section>

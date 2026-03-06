@@ -23,7 +23,31 @@ class ProductosController extends AppController
         $query = $this->Productos->find();
         $productos = $this->paginate($query);
 
-        $this->set(compact('productos'));
+        $producto = $this->Productos->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $producto = $this->Productos->patchEntity($producto, $this->request->getData());
+
+            //Agregar Imagen del libro
+            $imagen = $this->request->getData('Imagen');
+
+            if ($imagen) {
+                $tiempo = FrozenTime::now()->toUnixString();
+                $nombreImagen = $tiempo.'_'.$imagen->getClientFileName();
+                $destino = WWW_ROOT.'img/producto/'.$nombreImagen;
+
+                $imagen->moveTo($destino);
+                $producto->Imagen=$nombreImagen;
+            }
+
+            if ($this->Productos->save($producto)) {
+                $this->Flash->success(__('El producto fue Registrado.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('El producto no fue guardado. Por favor intente denuevo.'));
+        }
+
+        $this->set(compact('productos', 'producto'));
     }
 
     /**

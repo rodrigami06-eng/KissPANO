@@ -20,7 +20,18 @@ class UsuariosController extends AppController
         $query = $this->Usuarios->find();
         $usuarios = $this->paginate($query);
 
-        $this->set(compact('usuarios'));
+        $usuario = $this->Usuarios->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
+            if ($this->Usuarios->save($usuario)) {
+                $this->Flash->success(__('The usuario has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('usuarios', 'usuario'));
         $this->set('titulo', 'usuarios');
     }
 

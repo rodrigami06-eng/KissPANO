@@ -14,42 +14,42 @@
             
             $menuOpcion['controller'] = 'Dashboard';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view usuario-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '🏠 Inicio';
             $menuOpcion['icon'] = '';
             $menu['inicio'] = $menuOpcion;
 
             $menuOpcion['controller'] = 'Usuarios';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '👤 Usuarios';
             $menuOpcion['icon'] = '';
             $menu['usuarios'] = $menuOpcion;
             
             $menuOpcion['controller'] = 'Productos';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '📦 Inventario';
             $menuOpcion['icon'] = '';
             $menu['productos'] = $menuOpcion;
 
             $menuOpcion['controller'] = 'Ventas';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view usuario-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '💰 Ventas';
             $menuOpcion['icon'] = '';
             $menu['Ventas'] = $menuOpcion;
 
             $menuOpcion['controller'] = 'Reportes';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '📊 Reportes';
             $menuOpcion['icon'] = '';
             $menu['reportes'] = $menuOpcion;
 
             $menuOpcion['controller'] = 'Provedores';
             $menuOpcion['action'] = 'index';
-            $menuOpcion['class'] = 'menu-item abmin-view';
+            $menuOpcion['class'] = 'menu-item';
             $menuOpcion['text'] = '🚛 Proveedores';
             $menuOpcion['icon'] = '';
             $menu['proveedores'] = $menuOpcion;
@@ -59,16 +59,17 @@
         public function crearLinks(): string{
             $menu = $this->configurarNav();
 
-            $html = '<h2>PANADERÍA "KISS" <br></h2>';
+            $html = '<div class="sidebar-header"><h2>PANADERÍA KISS</h2></div>
+                <div class="menu-nav">';
 
-                
                 foreach ($menu as $link){
-                    $html .= '<div class="'.$link['class'].'">';
-                    $html .= $this->Html->link('<span>'.$link['text'].'</span>',
+                    $html .= $this->Html->link('<div class="'.$link['class'].'">'.$link['text'].'</div>',
                         ['controller' => $link['controller'], 'action' => $link['action']],
                         ['escape' => false]);
-                    $html .= '</div>';
                 }
+
+            $html .= '
+            </div>';
 
             return $html;
         }
