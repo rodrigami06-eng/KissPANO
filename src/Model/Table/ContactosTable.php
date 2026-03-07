@@ -40,6 +40,8 @@ class ContactosTable extends Table
         $this->setTable('contactos');
         $this->setDisplayField('Nombre');
         $this->setPrimaryKey('IdContac');
+
+        $this->belongsTo('Provedores');
     }
 
     /**
@@ -82,36 +84,31 @@ class ContactosTable extends Table
 
         $validator
             ->scalar('Tel')
-            ->maxLength('Tel', 20)
-            ->allowEmptyString('Tel');
-
-        $validator
-            ->scalar('Encargo')
-            ->maxLength('Encargo', 20)
-            ->allowEmptyString('Encargo');
+            ->maxLength('Tel', 20, 'Longitud de campo no permitido')
+            ->minLength('Tel', 10, 'Longitud del numero no valida')
+            ->notEmptyString('Tel');
 
         $validator
             ->scalar('Email')
             ->maxLength('Email', 50)
             ->requirePresence('Email', 'create')
-            ->notEmptyString('Email');
+            ->notEmptyString('Email')
+            ->email('email', false, 'Proporciona un correo válido')
+            ->add('email', 'unique', [
+                'rule' => 'validateUnique',
+                'provider' => 'table',
+                'message' => 'Este correo ya está registrado'
+            ]);
 
-        $validator
+        /*$validator
             ->integer('IdProv')
             ->requirePresence('IdProv', 'create')
             ->notEmptyString('IdProv')
             ->add('IdProv', 'exist', [
                 'rule' => 'validateExistID',
                 'provider' => 'table',
-                'message' => 'Este correo ya está registrado'
-            ]);
-
-        $validator
-            ->scalar('Contrasenia')
-            ->maxLength('Contrasenia', 100, 'Longitud exagerada')
-            ->requirePresence('Contrasenia', 'create')
-            ->notEmptyString('Contrasenia', 'Campo necesario')
-            ->minLength('Contrasenia', 8, 'La contraseña debe tener minimo 8 caracteres');
+                'message' => 'Este Proveedor ya está registrado'
+            ]);*/
 
         return $validator;
     }

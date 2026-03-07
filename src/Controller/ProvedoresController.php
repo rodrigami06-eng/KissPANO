@@ -20,6 +20,24 @@ class ProvedoresController extends AppController
         $query = $this->Provedores->find();
         $provedores = $this->paginate($query);
 
+        //$contacto = $this->fetchTable('Contactos');
+        
+        $provedore = $this->Provedores->newEmptyEntity();
+            
+        if ($this->request->is('post')) {
+            $provedore = $this->Provedores->patchEntity($provedore, $this->request->getData(), ['associated' => ['Contactos']]);
+            $provedore->Estado = 1;
+
+            if ($this->Provedores->save($provedore)) {
+                $this->Flash->success(__('proveedor Registrado.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            debug($provedore->getErrors());
+            $this->Flash->error(__('Proveedor no pudo registrarse, intente de nuevo.'));
+        }
+        $this->set(compact('provedore',));
+
         $this->set(compact('provedores'));
     }
 
@@ -43,9 +61,13 @@ class ProvedoresController extends AppController
      */
     public function add()
     {
+        $contacto = $this->fetchTable('Contactos');
+        
         $provedore = $this->Provedores->newEmptyEntity();
+        
         if ($this->request->is('post')) {
-            $provedore = $this->Provedores->patchEntity($provedore, $this->request->getData());
+            $provedore->Estado = 1;
+            $provedore = $this->Provedores->patchEntity($provedore, $this->request->getData(), ['associated' => ['Contactos']]);
             if ($this->Provedores->save($provedore)) {
                 $this->Flash->success(__('The provedore has been saved.'));
 
@@ -53,7 +75,7 @@ class ProvedoresController extends AppController
             }
             $this->Flash->error(__('The provedore could not be saved. Please, try again.'));
         }
-        $this->set(compact('provedore'));
+        $this->set(compact('provedore', 'contacto'));
     }
 
     /**

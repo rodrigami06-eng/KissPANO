@@ -40,6 +40,13 @@ class ProvedoresTable extends Table
         $this->setTable('provedores');
         $this->setDisplayField('Nombre');
         $this->setPrimaryKey('IdProv');
+
+        $this->hasOne('Contactos', [
+            'foreignKey' => 'IdProv',
+            'dependent' => true,
+            'class' => 'Contactos',
+            'propertyName' => 'contacto',
+        ]);
     }
 
     /**
@@ -78,11 +85,6 @@ class ProvedoresTable extends Table
             ->maxLength('Nombre', 30)
             ->requirePresence('Nombre', 'create')
             ->notEmptyString('Nombre');
-
-        $validator
-            ->boolean('Estado')
-            ->requirePresence('Estado', 'create')
-            ->notEmptyString('Estado');
 
         return $validator;
     }

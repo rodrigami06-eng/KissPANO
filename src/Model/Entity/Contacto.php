@@ -13,10 +13,8 @@ use Cake\ORM\Entity;
  * @property string $AP
  * @property string|null $AM
  * @property string|null $Tel
- * @property string|null $Encargo
  * @property string $Email
  * @property int $IdProv
- * @property string|null $Contrasenia
  */
 class Contacto extends Entity
 {
@@ -34,9 +32,7 @@ class Contacto extends Entity
         'AP' => true,
         'AM' => true,
         'Tel' => true,
-        'Encargo' => true,
         'Email' => true,
         'IdProv' => true,
-        'Contrasenia' => true,
     ];
 }

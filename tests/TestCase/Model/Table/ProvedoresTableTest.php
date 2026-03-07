@@ -25,6 +25,7 @@ class ProvedoresTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Provedores',
+        'app.Contactos',
     ];
 
     /**

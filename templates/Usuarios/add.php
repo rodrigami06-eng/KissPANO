@@ -11,7 +11,7 @@
         <?= $this->Form->create($usuario) ?>
         
         <?php
-            echo $this->Form->control('Nombre',['placeholder' => 'Nombre de Pila', 'label' => null]);
+            echo $this->Form->control('Nombre',['placeholder' => 'Nombre de Pila']);
             echo $this->Form->control('AP', ['placeholder' => 'Apellido Paterno']);
             echo $this->Form->control('AM', ['placeholder' => 'Apellido Materno']);
             echo $this->Form->control('Email', ['placeholder' => 'Correo']);
@@ -27,10 +27,9 @@
                 'empty' => 'Selecciona',
                 'class' => 'form-select'
             ]);
-            echo $this->Form->control('Contrasenia', ['type' => 'password', 'label' => 'Contraseña']);
         ?>
 
-        <?= $this->Form->button(__('Guardar'), ['action' => 'add', 'class' => 'btn btn-add']) ?>
+        <?= $this->Form->button(__('Guardar'), ['class' => 'btn btn-add']) ?>
         <?= $this->Form->end() ?>
     </div>
 </div>

@@ -7,12 +7,18 @@
 <section id="inventario" class="section active">
         <h1>Control de Stock</h1>
         <div class="glass-panel">
+            <?= $this->Form->create($producto, ['type' => 'file']) ?>
             <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr auto;">
-                <input type="text" id="i-nom" placeholder="Producto" oninput="soloLetras(this)">
-                <input type="number" id="i-price" placeholder="Precio $">
-                <input type="number" id="i-qty" placeholder="Existencia">
-                <button class="btn btn-add" onclick="addInv()">Guardar</button>
+                <?php
+                    echo $this->Form->control('Nombre', ['type' =>  'text', 'placeholder' => 'Producto', 'class' => 'form-group', 'label' => false]);
+                    echo $this->Form->control('Costo', ['type' => 'number', 'placeholder' => 'Precio', 'class' => 'form-group', 'label' => false]);
+                    echo $this->Form->control('CantDis', ['type' =>  'number', 'placeholder' => 'Stock', 'class' => 'form-group', 'label' => false]);
+                    echo $this->Form->control('Imagen',['type' =>  'file', 'placeholder' => 'Foto del producto', 'class' => 'form-group', 'label' => false]);
+                    echo $this->Form->control('Descrip', ['type' =>  'textarea', 'placeholder' => 'Drescripción del producto', 'class' => 'form-group', 'label' => false]);
+                ?>
+                <?= $this->Form->button(__('Agregar'),['class' => 'btn-add']) ?>
             </div>
+            <?= $this->Form->end() ?>
         </div>
         <div class="glass-panel">
             <table class="std-table">

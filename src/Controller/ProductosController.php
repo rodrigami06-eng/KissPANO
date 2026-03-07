@@ -46,7 +46,7 @@ class ProductosController extends AppController
             }
             $this->Flash->error(__('El producto no fue guardado. Por favor intente denuevo.'));
         }
-
+        $this->set('titulo', 'Inventario');
         $this->set(compact('productos', 'producto'));
     }
 

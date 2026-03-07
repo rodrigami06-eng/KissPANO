@@ -50,6 +50,8 @@ class VentasController extends AppController
         $productoT = $this->fetchTable('Productos');//->find('all');
 
         $venta = $this->Ventas->newEmptyEntity();
+        dd($venta);
+        exit();
         if ($this->request->is('post')) {
             $listaVP = $this->request->getData('VentProd');
 
@@ -182,8 +184,5 @@ class VentasController extends AppController
             }
             $this->Flash->error(__('La Venta no pudo ser guardada, intente de nuevo'));
         }
-
-        
-        
     }
 }

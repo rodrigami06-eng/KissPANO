@@ -25,7 +25,6 @@ class ProvedoresFixture extends TestFixture
                 'Num' => 'Lorem ip',
                 'Negocio' => 'Lorem ipsum dolor sit amet',
                 'Nombre' => 'Lorem ipsum dolor sit amet',
-                'Contrasenia' => 'Lorem ipsum dolor sit amet',
                 'Estado' => 1,
             ],
         ];
