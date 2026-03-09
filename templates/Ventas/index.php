@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Venta> $ventas
  */
+exit();
 ?>
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -12,15 +13,7 @@
     </div>
 </div>
 <div class="pos-container">
-    <div class="catalog">
-        <div class="prod-card" onclick="add('Bolillo', 2.50)"><span>🥖</span>Bolillo<br><b>$2.50</b></div>
-        <div class="prod-card" onclick="add('Concha', 12.00)"><span>🥐</span>Concha<br><b>$12.00</b></div>
-        <div class="prod-card" onclick="add('Dona Glaseada', 15.00)"><span>🍩</span>Dona<br><b>$15.00</b></div>
-        <div class="prod-card" onclick="add('Baguette', 35.00)"><span>🥖</span>Baguette<br><b>$35.00</b></div>
-        <div class="prod-card" onclick="add('Mantecada', 10.00)"><span>🧁</span>Mantecada<br><b>$10.00</b></div>
-        <div class="prod-card" onclick="add('Galleta Chispas', 8.50)"><span>🍪</span>Galleta<br><b>$8.50</b></div>
-        <div class="prod-card" onclick="add('Cuernito', 14.00)"><span>🥐</span>Cuernito<br><b>$14.00</b></div>
-    </div>
+    <?= $this->element('catalog');//Aquí se llama el elemento de catalog para que sea mas dinamico?>
 
     <div class="ticket-box">
         <div class="ticket-header">

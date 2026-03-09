@@ -6,14 +6,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Producto Entity
+ * ProdVent Entity
  *
  * @property int $IdProducto
  * @property int $IdVenta
  * @property int $Cantidad
- * @property int $Subtotal
+ * @property string $Subtotal
  */
-class ProdVenta extends Entity
+class ProdVent extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -25,8 +25,6 @@ class ProdVenta extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'IdProducto' => true,
-        'IdVenta' => true,
         'Cantidad' => true,
         'Subtotal' => true,
     ];

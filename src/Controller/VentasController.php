@@ -22,6 +22,9 @@ class VentasController extends AppController
         $query = $this->Ventas->find();
         $ventas = $this->paginate($query);
 
+        
+        $this->add();
+
         $this->set(compact('ventas'));
     }
 
@@ -46,34 +49,12 @@ class VentasController extends AppController
     public function add()
     {
         //Llamamos a la tabla de Provedores y productos en la base de Datos
-        $provedorT = $this->fetchTable('Provedores');
-        $productoT = $this->fetchTable('Productos');//->find('all');
+        $provedor = $this->fetchTable('Provedores')->find('list')->all();
+        $productoT = $this->fetchTable('Productos')->find()->all();
+        $prodL = $this->fetchTable('Productos')->find('list')->all();
 
         $venta = $this->Ventas->newEmptyEntity();
-        dd($venta);
-        exit();
         if ($this->request->is('post')) {
-            $listaVP = $this->request->getData('VentProd');
-
-            $prod = $productoT->find('list', [
-                'keyField' => 'IdProducto',       // La llave del arreglo
-                'valueField' => 'Costo'   // El valor del arreglo
-            ])->toArray();
-
-            $indice = 0;
-            $total = 0.0;
-
-            foreach($listaVP as $vp){
-                $vp['Subtotal'] = $vp['Cantidad'] * $prod[$vp['IdProducto']];
-                $listaVP1[$indice] = $vp;
-
-                $total += $vp['Subtotal'];
-
-                $indice ++;
-            }
-
-            $venta->ProdVent = $listaVP1;
-            $venta->Total = $total;
             $venta->Fecha = FrozenTime::now();
 
             $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
@@ -85,17 +66,8 @@ class VentasController extends AppController
             }
             $this->Flash->error(__('La Venta no pudo ser guardada, intente de nuevo'));
         }
-        //Se estraen por lista y por campo displayfield
-        $prodL = $productoT->find('list');
-        $provL = $provedorT->find('list');
 
-        //Se convierten en arreglos
-        $provL = $provL->toArray();
-        $prodL = $prodL->toArray();
-
-        $this->set(['provL' => $provL, compact('productoT'), 'prodL' => $prodL]);
-
-        $this->set(compact('venta'));
+        $this->set(compact('venta', 'productoT', 'provedor'));
     }
 
     /**

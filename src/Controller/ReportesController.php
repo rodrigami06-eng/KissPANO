@@ -19,6 +19,7 @@ class ReportesController extends AppController
     {
         $query = $this->Reportes->find();
         $reportes = $this->paginate($query);
+        $venta = $this->fetchtable('Ventas')->find();
 
         $this->set(compact('reportes'));
     }

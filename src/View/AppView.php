@@ -41,5 +41,7 @@ class AppView extends View
         $this->addHelper('Html');
         $this->addHelper('Url');
         $this->addHelper('NavegaLink');
+        $this->addHelper('Catalogo');
+        $this->loadHelper('Authentication.Identity');
     }
 }

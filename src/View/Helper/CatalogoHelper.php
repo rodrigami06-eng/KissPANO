@@ -6,20 +6,19 @@
 
     class CatalogoHelper extends Helper
     {   
-        public function configCards(): array{
-            $productos = 
-            $carta = array(); // define a la carta por arreglo
-            $fajo = array(); //almacena las cartas en arreglo par ser devuelta en la función
-            return $fajo; //devuelve el arreglo del fajo
-        }
-        public function mostrarCatalogo(array $productos): string
-        {   
-            $fajoCat = $this->configCards();//llama a la función para obtener las cartas de todos los productos registrados
 
-            $html ='<div class="catalog">';
-                $h = '';//'<div class="prod-card" onclick="add('Bolillo', 2.50)"><span>🥖</span>Bolillo<br><b>$2.50</b></div>';
-
-            $html .= '</div>';
+        protected array $helpers = ['Html'];
+        public function mostrarCatalogo(object $productos): string
+        {
+            $html = '';
+            foreach($productos as $producto){
+                $html .= '
+                    <div class="prod-card">
+                        <span>'.$this->Html->image('producto/'.$producto->Imagen).'</span>
+                        <p class="nombre">'.$producto->Nombre.'</p>
+                        <p class ="costo">'.$producto->Costo.'</p>
+                    </div>';//'<div class="prod-card" onclick="add('Bolillo', 2.50)"><span>🥖</span>Bolillo<br><b>$2.50</b></div>';
+                }
             return $html;
         }
     }

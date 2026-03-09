@@ -72,7 +72,7 @@
                     <td class="actions">
                         <?= $this->Html->link(__('✏️'), ['action' => 'edit', $usuario->IdUsuario,  'class' => 'btn-action']) ?>
                         <?= $this->Form->postLink(
-                            __(''),
+                            __('🗑️'),
                             ['action' => 'delete', $usuario->IdUsuario],
                             [
                                 'class' => 'btn-action',

@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\VentasTable;
+use App\Model\Table\ProdVentTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\VentasTable Test Case
+ * App\Model\Table\ProdVentTable Test Case
  */
-class VentasTableTest extends TestCase
+class ProdVentTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\VentasTable
+     * @var \App\Model\Table\ProdVentTable
      */
-    protected $Ventas;
+    protected $ProdVent;
 
     /**
      * Fixtures
@@ -24,8 +24,7 @@ class VentasTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
-        'app.Ventas',
-        'app.Productos',
+        'app.ProdVent',
     ];
 
     /**
@@ -36,8 +35,8 @@ class VentasTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Ventas') ? [] : ['className' => VentasTable::class];
-        $this->Ventas = $this->getTableLocator()->get('Ventas', $config);
+        $config = $this->getTableLocator()->exists('ProdVent') ? [] : ['className' => ProdVentTable::class];
+        $this->ProdVent = $this->getTableLocator()->get('ProdVent', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class VentasTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Ventas);
+        unset($this->ProdVent);
 
         parent::tearDown();
     }
@@ -56,7 +55,7 @@ class VentasTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @link \App\Model\Table\VentasTable::validationDefault()
+     * @link \App\Model\Table\ProdVentTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

@@ -14,9 +14,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Date $Fecha
  * @property int $IdUsuario
  * @property int $IdProv
- * //ProdVent campos
- * //@property int $CantVP
- * //@property float $Subtotal
+ *
+ * @property \App\Model\Entity\Producto[] $producto
  */
 class Venta extends Entity
 {
@@ -35,9 +34,6 @@ class Venta extends Entity
         'Fecha' => true,
         'IdUsuario' => true,
         'IdProv' => true,
-
-        //campos de pod_vent
-        //'CantidadVP' => true,
-        //'Subtotal' => true,
+        'producto' => true,
     ];
 }

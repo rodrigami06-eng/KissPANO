@@ -41,7 +41,13 @@ class VentasTable extends Table
         $this->setDisplayField('IdVenta');
         $this->setPrimaryKey('IdVenta');
 
-        $this->hasMany('ProdVent');
+        $this->hasMany('ProdVent', [
+            'foreignKey' => 'IdVenta',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+            'class' => 'ProvVent',
+            'propertyName' => 'producto',
+        ]);
     }
 
     /**

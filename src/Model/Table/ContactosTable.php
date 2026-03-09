@@ -100,15 +100,15 @@ class ContactosTable extends Table
                 'message' => 'Este correo ya está registrado'
             ]);
 
-        /*$validator
+        $validator
             ->integer('IdProv')
             ->requirePresence('IdProv', 'create')
             ->notEmptyString('IdProv')
             ->add('IdProv', 'exist', [
                 'rule' => 'validateExistID',
                 'provider' => 'table',
-                'message' => 'Este Proveedor ya está registrado'
-            ]);*/
+                'message' => 'Este Proveedor no está registrado'
+            ]);
 
         return $validator;
     }

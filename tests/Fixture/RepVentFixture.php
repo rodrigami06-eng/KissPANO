@@ -6,10 +6,16 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * VentasFixture
+ * RepVentFixture
  */
-class VentasFixture extends TestFixture
+class RepVentFixture extends TestFixture
 {
+    /**
+     * Table name
+     *
+     * @var string
+     */
+    public string $table = 'rep_vent';
     /**
      * Init method
      *
@@ -19,12 +25,8 @@ class VentasFixture extends TestFixture
     {
         $this->records = [
             [
+                'IdReporte' => 1,
                 'IdVenta' => 1,
-                'Cantidad' => 1,
-                'Total' => 1.5,
-                'Fecha' => '2026-03-08',
-                'IdUsuario' => 1,
-                'IdProv' => 1,
             ],
         ];
         parent::init();

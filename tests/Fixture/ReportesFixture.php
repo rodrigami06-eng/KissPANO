@@ -20,7 +20,7 @@ class ReportesFixture extends TestFixture
         $this->records = [
             [
                 'IdReporte' => 1,
-                'Fecha' => '2026-02-25',
+                'Fecha' => '2026-03-08',
                 'IngresoTotal' => 1.5,
             ],
         ];
