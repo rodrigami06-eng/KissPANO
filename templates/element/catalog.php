@@ -1,3 +1,3 @@
-<div class="catalog">
+<div id="catalog" class="catalog">
     <?= $this->Catalogo->mostrarCatalogo($productoT) ?>
 </div>

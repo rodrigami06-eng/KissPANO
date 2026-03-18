@@ -9,15 +9,19 @@
         <div class="glass-panel">
             <?= $this->Form->create($producto, ['type' => 'file']) ?>
             <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr auto;">
-                <?php
-                    echo $this->Form->control('Nombre', ['type' =>  'text', 'placeholder' => 'Producto', 'class' => 'form-group', 'label' => false]);
-                    echo $this->Form->control('Costo', ['type' => 'number', 'placeholder' => 'Precio', 'class' => 'form-group', 'label' => false]);
-                    echo $this->Form->control('CantDis', ['type' =>  'number', 'placeholder' => 'Stock', 'class' => 'form-group', 'label' => false]);
-                    echo $this->Form->control('Imagen',['type' =>  'file', 'placeholder' => 'Foto del producto', 'class' => 'form-group', 'label' => false]);
-                    echo $this->Form->control('Descrip', ['type' =>  'textarea', 'placeholder' => 'Drescripción del producto', 'class' => 'form-group', 'label' => false]);
-                ?>
-                <?= $this->Form->button(__('Agregar'),['class' => 'btn-add']) ?>
+                <?= $this->Form->control('Nombre', ['type' =>  'text', 'placeholder' => 'Producto', 'class' => 'form-group', 'label' => false]);?>
+                <?= $this->Form->control('Costo', ['type' => 'number', 'placeholder' => 'Precio', 'class' => 'form-group', 'label' => false]);?>
             </div>
+            
+            <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr auto;">
+                <?= $this->Form->control('CantDis', ['type' =>  'number', 'placeholder' => 'Stock', 'class' => 'form-group', 'label' => false]);?>
+                <?= $this->Form->control('Imagen',['type' =>  'file', 'placeholder' => 'Foto del producto', 'class' => 'form-group', 'label' => false]);?>
+            </div>
+
+            <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr auto;">
+                <?= $this->Form->control('Descrip', ['type' =>  'textarea', 'placeholder' => 'Drescripción del producto', 'class' => 'form-group', 'label' => false]);?>
+            </div>
+                <?= $this->Form->button(__('Agregar'),['class' => 'btn btn-add']) ?>
             <?= $this->Form->end() ?>
         </div>
         <div class="glass-panel">

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
@@ -37,4 +38,10 @@ class Usuario extends Entity
         'Email' => true,
         'Contrasenia' => true,
     ];
+
+    protected function _setContrasenia(string $contrasenia)
+    {
+        $hasher = new DefaultPasswordHasher();
+        return $hasher->hash($contrasenia);
+    }
 }

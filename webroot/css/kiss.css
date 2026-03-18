@@ -54,6 +54,12 @@
     .btn-logout { margin: 20px; padding: 12px; background: var(--peligro); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
     .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .form-row.prod-card img {
+        width: 300px;
+        height: 300px;
+        overflow: hidden; /* Oculta lo que sobresale */
+        border: 2px solid #ccc;
+    }
     input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; box-sizing: border-box; background: #fff; }
 
     .btn-action { background: none; border: none; cursor: pointer; font-size: 1.1rem; transition: 0.2s; }

@@ -133,6 +133,7 @@ class UsuariosController extends AppController
     public function logout()
     {
         $this->Authentication->logout();
+        $this->Flash->success(__('Sesión Terminada'));
         return $this->redirect(['controller' => 'Usuarios', 'action' => 'login']);
     }
 }

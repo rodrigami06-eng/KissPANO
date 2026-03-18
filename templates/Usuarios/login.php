@@ -13,7 +13,7 @@
 		<div class="logo-container">
 			<?= $this->html->image('logopanaderia.png')?>
 		</div>
-		<?= $this->Flash->render() ?>
+		<?= $this->Flash->render()?>
 		<h2>Panel de Control</h2>
 		<?= $this->Form->create() ?>
 		<p>Ingresa tus credenciales de administrador</p>

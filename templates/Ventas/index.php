@@ -3,7 +3,6 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Venta> $ventas
  */
-exit();
 ?>
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -14,8 +13,7 @@ exit();
 </div>
 <div class="pos-container">
     <?= $this->element('catalog');//Aquí se llama el elemento de catalog para que sea mas dinamico?>
-
-    <div class="ticket-box">
+        <?= $this->Form->create($venta,['class' => 'ticket-box'])?>
         <div class="ticket-header">
             <h2 style="margin:0; color:var(--primario); letter-spacing: 2px;">PANADERÍA KISS</h2>
             <p style="margin:5px 0; font-size: 0.8rem; color: #777;">Ticket de Venta Directa</p>
@@ -26,7 +24,28 @@ exit();
                 <thead>
                     <tr><th>Producto</th><th style="text-align:center">Cant.</th><th>Subtotal</th></tr>
                 </thead>
-            <tbody id="pos-body"></tbody>
+            <tbody id="pos-body">
+                <template id="ticket-row">
+                        <td class="prod-cost">
+                            <b>{prod}</b><br>
+                            <small>${cost}</small>
+                        </td>
+                        <td style="text-align:center">
+                            <?= $this->Form->control('VentProd.{index}.Cantidad', [
+                                'type' => 'number', 
+                                'label' => false,
+                                'class' => 'cant-prod',
+                                'value' => 1,
+                                ]) ?>
+                            <?= $this->Form->control('VentProd.{index}.IdProducto',[
+                                'type' => 'hidden', 
+                                'value' => '{index}']) ?>
+                        </td>
+                        <td class="sub-prod">
+                            ${cost}
+                        </td>
+                </template>
+            </tbody>
             </table>
             <div id="empty-cart-msg" style="text-align:center; padding:40px; color:#ccc;">
                 🛒 El carrito está vacío
@@ -37,11 +56,13 @@ exit();
                 <span>TOTAL</span>
                 <span id="pos-total">$0.00</span>
             </div>
-            <button class="btn btn-pay" onclick="pay()">
-                <span>✅ FINALIZAR Y GENERAR TICKET</span>
-            </button>
+            <?= $this->Form->button(__('REALIZAR VENTA'),[
+                'class' => 'btn btn-pay', 
+                "id" => 'pay-btn'
+                ]) ?>
         </div>
-    </div>
+        <?= $this->Form->end()?>
+    
 </div>
 
 <div class="ventas index content">
@@ -97,3 +118,5 @@ exit();
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+
+<?= $this->Html->script('aniadir-producto.js')?>
