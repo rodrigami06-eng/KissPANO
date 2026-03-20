@@ -27,5 +27,7 @@ class ProdVent extends Entity
     protected array $_accessible = [
         'Cantidad' => true,
         'Subtotal' => true,
+        'IdProducto' => true,
+        'IdVenta' => true,
     ];
 }

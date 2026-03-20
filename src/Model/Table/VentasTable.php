@@ -45,8 +45,8 @@ class VentasTable extends Table
             'foreignKey' => 'IdVenta',
             'dependent' => true,
             'cascadeCallbacks' => true,
-            'class' => 'ProvVent',
-            'propertyName' => 'producto',
+            'class' => 'ProdVent',
+            'propertyName' => 'ProdVent',
         ]);
     }
 

@@ -69,3 +69,14 @@
     .error-message {
         color: red;
     }
+
+    .img-card{
+        width: 100%;
+        aspect-ratio: 1 / 1; /* Fuerza a que sea un cuadrado */
+        object-fit: cover;   /* Recorta la imagen para que llene el espacio sin deformarse */
+    }
+    .img-table{
+        width: 20%;
+        aspect-ratio: 1 / 1; /* Fuerza a que sea un cuadrado */
+        object-fit: cover;   /* Recorta la imagen para que llene el espacio sin deformarse */
+    }

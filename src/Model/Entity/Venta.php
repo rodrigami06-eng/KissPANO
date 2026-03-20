@@ -34,6 +34,6 @@ class Venta extends Entity
         'Fecha' => true,
         'IdUsuario' => true,
         'IdProv' => true,
-        'producto' => true,
+        'ProdVent' => true,
     ];
 }

@@ -44,7 +44,7 @@ class ProductosController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('El producto no fue guardado. Por favor intente denuevo.'));
+            $this->Flash->error(__('El producto no fue guardado. Por favor intente de nuevo.'));
         }
         $this->set('titulo', 'Inventario');
         $this->set(compact('productos', 'producto'));

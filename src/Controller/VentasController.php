@@ -52,12 +52,25 @@ class VentasController extends AppController
         $provedor = $this->fetchTable('Provedores')->find('list')->all();
         $productoT = $this->fetchTable('Productos')->find()->all();
         $prodL = $this->fetchTable('Productos')->find('list')->all();
-
+        
         $venta = $this->Ventas->newEmptyEntity();
         if ($this->request->is('post')) {
-            $venta->Fecha = FrozenTime::now();
+            $data = $this->request->getData();
 
-            $venta = $this->Ventas->patchEntity($venta, $this->request->getData(), ['associated' => ['ProdVent']]);
+            $cantidad = 0;
+
+            foreach($data['ProdVent'] as $prod){
+                $cantidad += $prod['Cantidad'];
+            }
+
+            $data['Cantidad'] = $cantidad;
+
+            $data['Fecha'] = FrozenTime::now()->toDateString();
+
+            /*dd($data);
+            exit();*/
+
+            $venta = $this->Ventas->patchEntity($venta, $data, ['associated' => ['ProdVent']]);
 
             if ($this->Ventas->save($venta)) {
                 $this->Flash->success(__('La venta fue guardada.'));
@@ -66,8 +79,9 @@ class VentasController extends AppController
             }
             $this->Flash->error(__('La Venta no pudo ser guardada, intente de nuevo'));
         }
+        $provL = $provedor->toArray();
 
-        $this->set(compact('venta', 'productoT', 'provedor'));
+        $this->set(compact('venta', 'productoT', 'provedor', 'provL'));
     }
 
     /**

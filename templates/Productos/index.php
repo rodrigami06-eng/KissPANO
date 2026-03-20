@@ -40,7 +40,7 @@
                     <td><?= h($producto->Nombre) ?></td>
                     <td><?= $this->Number->format($producto->Costo) ?></td>
                     <td><?= $this->Number->format($producto->CantDis) ?></td>
-                    <td><?= $this->Html->image('producto/'.$producto->Imagen)?></td>
+                    <td><?= $this->Html->image('producto/'.$producto->Imagen,['class' => 'img-table'])?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('Ver'), ['action' => 'view', $producto->IdProducto, 'class' => 'btn-action']) ?>
                         <?= $this->Html->link(__('✏️'), ['action' => 'edit', $producto->IdProducto, 'class' => 'btn-action']) ?>
