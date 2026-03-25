@@ -72,8 +72,7 @@ class ProductosController extends AppController
     {
         $producto = $this->Productos->newEmptyEntity();
         if ($this->request->is('post')) {
-            $producto = $this->Productos->patchEntity($producto, $this->request->getData());
-
+            $data = $this->request->getData();
             //Agregar Imagen del libro
             $imagen = $this->request->getData('Imagen');
 
@@ -83,8 +82,10 @@ class ProductosController extends AppController
                 $destino = WWW_ROOT.'img/producto/'.$nombreImagen;
 
                 $imagen->moveTo($destino);
-                $producto->Imagen=$nombreImagen;
+                $data['Imagen'] = $nombreImagen;
             }
+
+            $producto = $this->Productos->patchEntity($producto, $data);
 
             if ($this->Productos->save($producto)) {
                 $this->Flash->success(__('El producto fue Registrado.'));
@@ -107,12 +108,31 @@ class ProductosController extends AppController
     {
         $producto = $this->Productos->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            
+            $data = $this->request->getData();
             $nomImgAnt = $producto->Imagen;
+            $imagen = $this->request->getData('Imagen');
 
-            $producto = $this->Productos->patchEntity($producto, $this->request->getData());
+            if($nomImgAnt != $imagen->getClientFileName() || $imagen == null){
+                $archivo = WWW_ROOT.'img/producto/'.$nomImgAnt;
 
-            $producto->Imagen = $nomImgAnt;
+                $tiempo = FrozenTime::now()->toUnixString();
+                $nombreImagen = $tiempo.'_'.$imagen->getClientFileName();
+                $destino = WWW_ROOT.'img/producto/'.$nombreImagen;
+
+                if(file_exists($archivo) && !is_dir($archivo)){
+                    $error = (unlink($archivo)) 
+                    ? 'Imagen Remplazado' 
+                    : 'Error al eliminar la imagen anterior.' ;
+                    $this->Flash->error($error);
+                }
+
+                $imagen->moveTo($destino);
+                $data['Imagen'] = $nombreImagen;
+            }else{
+                $data['Imagen'] = $nomImgAnt;
+            }
+
+            $producto = $this->Productos->patchEntity($producto, $data);
 
             if ($this->Productos->save($producto)) {
                 $this->Flash->success(__('The producto has been saved.'));

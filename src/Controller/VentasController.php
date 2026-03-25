@@ -19,11 +19,30 @@ class VentasController extends AppController
      */
     public function index()
     {
+        //$this->Authorization->skipAuthorization();
         $query = $this->Ventas->find();
         $ventas = $this->paginate($query);
 
         
         $this->add();
+
+        $this->set(compact('ventas'));
+    }
+    /**
+     * view of reporte
+     * @return void
+     */
+    public function reporte(){
+        //$this->Authorization->skipAuthorization();
+        $query = $this->Ventas->find();
+        $ventas = $this->paginate($query);
+
+        $cajero = $this->fetchTable('Usuarios')->find('list');
+        $cajeroL = $cajero->toArray();
+
+        $this->set('titulo','Reporte de Ventas');
+        $this->set('cajeroL', $cajeroL);
+        $this->set('cajeros', $cajero);
 
         $this->set(compact('ventas'));
     }

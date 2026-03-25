@@ -8,6 +8,8 @@
     $idUsuario = $this->Identity->get('IdUsuario'); 
 ?>
 
+<?= $this->Flash->render()?>
+
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
     <h1>🛒 Punto de Venta</h1>
     <div style="display: flex; gap: 10px;">

@@ -5,6 +5,7 @@
  */
 ?>
 <section id="inventario" class="section active">
+    <?= $this->Flash->render()?>
         <h1>Control de Stock</h1>
         <div class="glass-panel">
             <?= $this->Form->create($producto, ['type' => 'file']) ?>

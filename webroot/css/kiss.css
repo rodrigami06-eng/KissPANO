@@ -80,3 +80,13 @@
         aspect-ratio: 1 / 1; /* Fuerza a que sea un cuadrado */
         object-fit: cover;   /* Recorta la imagen para que llene el espacio sin deformarse */
     }
+
+    .menu-nav a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .std-table a{
+        text-decoration: none;
+        color: var(--primario);
+    }

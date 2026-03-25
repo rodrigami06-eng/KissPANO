@@ -40,6 +40,13 @@ class ReporteTable extends Table
         $this->setTable('reporte');
         $this->setDisplayField('IdReporte');
         $this->setPrimaryKey('IdReporte');
+
+        $this->belongsToMany('Ventas', [
+            'foreignKey' => '',
+            'dependent' => true,
+            'class' => 'Ventas',
+            'propertyName' => 'venta',
+        ]);
     }
 
     /**

@@ -5,31 +5,32 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+    <div class="column">
+        <div class="glass-panel">
+            <h4 class="heading"><?= __('Acciones') ?></h4>
             <?= $this->Form->postLink(
-                __('Delete'),
+                __('Eliminar'),
                 ['action' => 'delete', $producto->IdProducto],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $producto->IdProducto), 'class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(__('List Productos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
-    </aside>
-    <div class="column column-80">
-        <div class="productos form content">
+    </div>
+    <div class="glass-panel">
+        <div class="form-row">
             <?= $this->Form->create($producto, ['type' => 'file']) ?>
             <fieldset>
-                <legend><?= __('Edit Producto') ?></legend>
+                <legend><?= __('Editar Producto') ?></legend>
                 <?php
-                    echo $this->Form->control('Nombre');
-                    echo $this->Form->control('Costo');
-                    echo $this->Form->control('CantDis');
-                    echo $this->Form->control('Imagen', ['type' => 'file', 'required' => false]);
-                    echo $this->Form->control('Descrip');
+                    echo $this->Form->control('Nombre', ['label' => 'Producto', 'placeholder' => '']);
+                    echo $this->Form->control('Costo', ['label' => 'Precio', 'placeholder' => '']);
+                    echo $this->Form->control('CantDis', ['label' => 'Cantidad en Stock', 'placeholder' => '']);
+                    echo $this->Form->control('Imagen', ['type' => 'file', 'placeholder' => 'Seleccione Imagen', 'required' => false, 'label' => 'Seleccione imagen', 'value' => '/img/producto/'.$producto->Imagen]);
+                    echo $this->Form->control('Descrip',  ['label' => 'Descripcción de producto', 'placeholder' => 'Escriba acerca del producto']);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Cambiar')) ?>
+            <?= $this->Html->link(__('Cancelar'),  ['action' => 'index','class' => 'btn btn-add']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

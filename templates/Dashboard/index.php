@@ -6,3 +6,4 @@
             <div class="glass-panel"><h3>Ventas Hoy</h3><h2 id="dash-v">$0.00</h2></div>
             <div class="glass-panel"><h3>Tickets Emitidos</h3><h2 id="dash-t">0</h2></div>
         </div>
+        <?= $this->element('catalog') ?>

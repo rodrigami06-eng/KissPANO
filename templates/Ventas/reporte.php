@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Reporte> $reportes
+ * @var iterable<\App\Model\Entity\Ventas> $ventas
  */
 ?>
  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
@@ -21,30 +21,20 @@
                 <tr>
                     <th><?= $this->Paginator->sort('IdVenta', 'Folio') ?></th>
                     <th><?= $this->Paginator->sort('Fecha') ?></th>
+                    <th><?= $this->Paginator->sort('Usuario.IdUsuario', 'Cajero') ?></th>
                     <th><?= $this->Paginator->sort('Total') ?></th>
-                    <th><?= __('Actions') ?></th>
                 </tr>    
                 <!--<tr><th>Folio</th><th>Fecha</th><th>Cajero</th><th>Total</th></tr>-->
                 </thead>
                 <tbody id="rep-body">
-                    <?php foreach($ventaQ as $venta) ?>
-                    <tr>
+                    <?php foreach($ventas as $venta): ?>
+                    <tr data-fecha="<?= $venta->Fecha?>">
                     <td><?= $this->Number->format($venta->IdVenta) ?></td>
                     <td><?= h($venta->Fecha) ?></td>
-                    <td>$<?= $this->Number->format($venta->Total) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $venta->IdVenta]) ?>
-                        <?= $this->Html->link(__('✏️'), ['action' => 'edit', $venta->IdVenta]) ?>
-                        <?= $this->Form->postLink(
-                            __('🗑️'),
-                            ['action' => 'delete', $venta->IdVenta],
-                            [
-                                'method' => 'delete',
-                                'confirm' => __('Seguro de querer eliminar la enta de folio #{0}?', $reporte->IdReporte),
-                            ]
-                        ) ?>
-                    </td>
-                </tr>
+                    <td><?= h($cajeroL[$venta->IdUsuario]) ?></td>
+                    <td style="color:var(--exito); font-weight:bold;">$<?= $this->Number->format($venta->Total) ?></td>
+                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -61,7 +61,8 @@ class VentasTable extends Table
         $validator
             ->integer('Cantidad')
             ->requirePresence('Cantidad', 'create')
-            ->notEmptyString('Cantidad');
+            ->notEmptyString('Cantidad')
+            ->greaterThan('Cantidad',0,'Debe agragar alguna cantidad');
 
         $validator
             ->decimal('Total')

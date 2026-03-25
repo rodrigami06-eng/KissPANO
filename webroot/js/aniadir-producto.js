@@ -13,8 +13,7 @@ function agregarProd(p){
     const template = document.getElementById('ticket-row').innerHTML;
 
     let exist = null;
-    console.log('Clic en elemento de: ', p.producto, ' de precio: ', p.precio, ' y id: ', p.id);
-    //e.target.classList.toggle('activo');
+
     cart.forEach(prod => {
         if(prod.id == p.id){
             exist = prod;
@@ -49,7 +48,6 @@ function agregarProd(p){
     }
 
     msgVacio.style.display = 'none';
-    //renderCart();
 }
 
 function darTotal(){
@@ -69,7 +67,6 @@ function verVacio(e){
         if(cantidad.value == 0 || cantidad.value == ''){
             e.target.closest('.prod-row').remove();
         }
-        console.log('se vio el vacio');
     }
 }
 
@@ -82,8 +79,6 @@ contenedor.addEventListener('keyup', function(e){
     sub.value = subtotal.toFixed(2);
 
     darTotal();
-
-    console.log('Se realizó el proceso');
 });
 
 cards.forEach(card => {
@@ -93,7 +88,7 @@ cards.forEach(card => {
             producto : card.getAttribute('producto'),
             id : card.id
         }
-        console.log(card.producto, card.precio);
+        
         agregarProd(data);
     });
 });

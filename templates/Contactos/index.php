@@ -5,6 +5,7 @@
  */
 ?>
 <div class="contactos index content">
+    <?= $this->Flash->render()?>
     <?= $this->Html->link(__('New Contacto'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Contactos') ?></h3>
     <div class="table-responsive">

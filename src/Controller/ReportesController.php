@@ -17,11 +17,14 @@ class ReportesController extends AppController
      */
     public function index()
     {
+        //$this->Authorization->skipAuthorization();
         $query = $this->Reportes->find();
         $reportes = $this->paginate($query);
         $venta = $this->fetchtable('Ventas')->find();
+        $ventaQ = $this->paginate($venta);
+        $usuarioL = $this->fetchTable('Usuarios')->find('list')->toArray();
 
-        $this->set(compact('reportes'));
+        $this->set(compact('reportes', 'ventaQs'), 'usuarioL');
     }
 
     /**

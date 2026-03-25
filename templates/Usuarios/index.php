@@ -5,6 +5,7 @@
  */
 ?>
 <section id="usuarios" class="section active">
+    <?= $this->Flash->render()?>
     <h1>Gestión de Trabajadores</h1>
     <div class="glass-panel">
     <h3 id="u-form-title">Registrar Nuevo Empleado</h3>

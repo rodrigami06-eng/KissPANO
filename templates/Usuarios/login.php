@@ -18,13 +18,15 @@
 		<?= $this->Form->create() ?>
 		<p>Ingresa tus credenciales de administrador</p>
 		<fieldset>
-			<legend><?= __('Ingresa Email y Contraseña') ?></legend>
+			<legend><?= __('Ingresa Email y Contraseña') ?></legend> 
 			<div class="input-group">
 				<?= $this->Form->control('Email', ['type' => 'text', 'label' => 'Correo', 'required' => true]) ?>
+				<div id="msj-correo"></div>
 			</div>
 
 			<div class="input-group">
 				<?= $this->Form->control('Contrasenia', ['type' => 'password', 'label' => 'Tu Contraseña', 'required' => true]) ?>
+				<div id="msj-contra"></div>
 			</div>
 		</fieldset>
 
@@ -36,6 +38,6 @@
 			<?= $this->Html->link("Registrar Usuarios", ['action' => 'add']) ?>
 		</div>
 	</div>
-
+	<?= $this->Html->script('loginvalido.js')?>
 </body>
 </html>

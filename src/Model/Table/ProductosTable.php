@@ -63,7 +63,8 @@ class ProductosTable extends Table
         $validator
             ->decimal('Costo')
             ->requirePresence('Costo', 'create')
-            ->notEmptyString('Costo','Campo requerido');
+            ->notEmptyString('Costo','Campo requerido')
+            ->greaterThan('Costo', 0, 'Favor de ingresar valores positivos y no nulos');
 
         $validator
             ->integer('CantDis')

@@ -20,7 +20,7 @@
         <div class="form-row">
             <?= $this->Form->create($usuario) ?>
             <fieldset>
-                <legend><?= __('Editar Usuario Usuario') ?></legend>
+                <legend><?= __('Editar Usuario') ?></legend>
                 <?php
                     echo $this->Form->control('Nombre',['label' => 'Nombre']);
                     echo $this->Form->control('AP',['label' => 'Ap.Paterno']);

@@ -17,6 +17,10 @@ class UsuariosController extends AppController
      */
     public function index()
     {
+        //$this->Authorization->skipAuthorization();
+        //$use = $this->Usuarios->get('IdUsuario');
+        //$this->Authorization->authorize($use, 'update');
+
         $query = $this->Usuarios->find();
         $usuarios = $this->paginate($query);
 
@@ -112,8 +116,10 @@ class UsuariosController extends AppController
 
     public function login()
     {
+        //$this->Authorization->skipAuthorization();
         $result = $this->Authentication->getResult();
 
+        
         // If the user is logged in send them away.
         if ($result && $result->isValid()) {
             $target = $this->Authentication->getLoginRedirect() ?? [
@@ -123,6 +129,14 @@ class UsuariosController extends AppController
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {
+        
+            $existe = $this->Usuarios->exists(['Email' => $_POST['Email']]);
+
+            if(!$existe){
+                $this->Flash->error(__('Correo no reconosible'));
+
+                return $this->redirect(['Controllers' => 'Usuarios', 'action' => 'login']);
+            }
             $this->Flash->error(__('Correo o contraseña invalidas'));
             //debug($result->getData()); // Esto te mostrará el usuario si lo encontró, o NULL si falló.
             //debug($result->getErrors()); // Esto te dirá POR QUÉ falló.

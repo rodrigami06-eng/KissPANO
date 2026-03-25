@@ -47,8 +47,8 @@ class AppController extends Controller
         $this->loadComponent('Authentication.Authentication');
         //indica que pagina no se necesita autenticación
         $this->Authentication->allowUnauthenticated(['Usuarios', 'login']);
-        //Agrega eñ cmponente de autenticación
-        $this->loadComponent('Authorization.Authorization');
+        //Agrega el componente de autenticación
+        //$this->loadComponent('Authorization.Authorization');
         
         /*
          * Enable the following component for recommended CakePHP form protection settings.
